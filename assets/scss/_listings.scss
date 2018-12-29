@@ -1,0 +1,120 @@
+#listings-page {
+  background: $blanco;
+  color: $negro;
+  .filter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 50px 0;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+    select {
+      background: $blanco;
+      border-radius: 5px;
+      padding: 5px;
+      min-width: 100px;
+      font-size: 1rem;
+      border: 2px solid #ADBED2;
+      margin-right: 20px;
+      color: #1b1b1b;
+    }
+    &.button {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+    .primary-btn {
+      padding: 10px 20px;
+      color: $blanco;
+      background: $BSprimary;
+    }
+    .reset-btn {
+      color: $BSprimary;
+      transition: all 0.5s ease-in-out;
+      &:hover{
+        background: $liteGrey;
+        color: $negro;
+      }
+    }
+    .primary-btn,
+    .reset-btn {
+      cursor: pointer;
+      padding: 10px 20px;
+      margin-right: 20px;
+    }
+  }
+
+  #list-view {
+    background: $liteGrey;
+    padding: 20px 0;
+    .white-box {
+      background: $blanco;
+      padding: 20px;
+    }
+    .change-view {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 15px;
+    }
+    .all-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+
+      .item {
+        box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.37);
+        overflow: hidden;
+        .image {
+          background: url('https://farm4.staticflickr.com/3823/13568385304_bdfdf9c867_b.jpg');
+          height: 250px;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          position: relative;
+          padding: 10px;
+
+          .price {
+            background: $blanco;
+            position: absolute;
+            padding: 5px 10px;
+            border-radius: 2px;
+            color: green;
+          }
+        }
+
+        .details {
+          padding: 10px;
+          position: relative;
+
+          .fa-star {
+            position: absolute;
+            right: 10px;
+            font-size: 1rem;
+            &:hover {
+              color: gold;
+              cursor: pointer;
+            }
+          }
+
+
+          h5 {
+            color: #27292D;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 5px;
+          }
+          h6 {
+            color: #565D68;
+            font-size: 0.7rem;
+          }
+        }
+      }
+    }
+  }
+}

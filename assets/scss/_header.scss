@@ -1,0 +1,46 @@
+#header {
+  color: #fff;
+  padding: 20px 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  .fa-chevron-down {
+    @include awesomeMarg;
+  }
+
+
+  .left-menu {
+    display: flex;
+    .logo {
+      font-size: 2rem;
+      display: flex;
+      cursor: pointer;
+      @include centerIt;
+    }
+    .city {
+      display: flex;
+      @include centerIt;
+      @include paddingFor;
+    }
+  }
+  .right-menu {
+    display: flex;
+    .user-image {
+      display: flex;
+      @include centerIt;
+    }
+    .user-dropdown {
+      display: flex;
+      @include centerIt;
+      @include paddingFor;
+    }
+    .post-btn {
+      background: rgb(119, 196, 255);
+      font-weight: 300;
+      text-transform: capitalize;
+      color: #fff;
+      cursor: pointer;
+      @include paddingFor;
+    }
+  }
+}
