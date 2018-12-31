@@ -15,7 +15,15 @@ class Header extends Component {
       <div className="left-menu">
         <div className="logo">Courtslist</div>
         <div className="city">
-          Washington D.C.<i className="fas fa-chevron-down"/>
+          Washington D.C.
+          <i className="fas fa-chevron-down"/>
+          <div className={`dropdown`}>
+            <ul>
+              <li>New York City</li>
+              <li>San Francisco</li>
+              <li>Boston</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className="right-menu">

@@ -870,7 +870,12 @@ table {
           justify-content: center;
       -ms-flex-align: center;
           align-items: center;
-      padding: 15px 20px; }
+      padding: 15px 20px;
+      position: relative; }
+      #header .left-menu .city .dropdown {
+        position: absolute;
+        background: blue;
+        top: 50px; }
   #header .right-menu {
     display: -ms-flexbox;
     display: flex; }

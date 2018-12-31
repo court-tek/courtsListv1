@@ -21,6 +21,12 @@
       display: flex;
       @include centerIt;
       @include paddingFor;
+      position: relative;
+      .dropdown {
+        position: absolute;
+        background: blue;
+        top: 50px;
+      }
     }
   }
   .right-menu {

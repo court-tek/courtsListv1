@@ -13402,7 +13402,30 @@ var Header = function (_Component) {
               "div",
               { className: "city" },
               "Washington D.C.",
-              _react2.default.createElement("i", { className: "fas fa-chevron-down" })
+              _react2.default.createElement("i", { className: "fas fa-chevron-down" }),
+              _react2.default.createElement(
+                "div",
+                { className: "dropdown" },
+                _react2.default.createElement(
+                  "ul",
+                  null,
+                  _react2.default.createElement(
+                    "li",
+                    null,
+                    "New York City"
+                  ),
+                  _react2.default.createElement(
+                    "li",
+                    null,
+                    "San Francisco"
+                  ),
+                  _react2.default.createElement(
+                    "li",
+                    null,
+                    "Boston"
+                  )
+                )
+              )
             )
           ),
           _react2.default.createElement(
@@ -13838,7 +13861,7 @@ var Home = function (_Component) {
       }
 
       var self = this;
-      _axios2.default.get("/api/" + match.params.city + "/categories").then(function (res) {
+      _axios2.default.get("/api/" + match.params.city).then(function (res) {
         if (_this2._isMount) {
           _this2.setState({
             categoriesData: res.data

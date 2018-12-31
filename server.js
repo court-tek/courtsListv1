@@ -2,18 +2,35 @@ const express = require('express')
 const serveStatic = require('serve-static')
 const path = require('path')
 const categoriesData = require('./data/categories.js');
+const citiesData = require('./data/cities.js');
+const itemsData = require('./data/items.js');
 // create the express app
 const app = express()
 // create middleware to handle the serving the app
 app.use("/", serveStatic ( path.join (__dirname, '/public') ) )
 
+// api
+// shhows all the cities available
 app.get('/apis/cities', function(req, res) {
+  res.json(citiesData);
 })
-app.get('/api/:city/:store', function(req, res) {
+// shows all the categories for a city
+app.get('/api/:city', function(req, res) {
   res.json(categoriesData);
 });
-app.get('/api/:city/:categories/:listings/:item', function(req, res) {
+// shows all the items for a particular category
+app.get('/api/:city/:categories', function(req, res) {
+  res.json(categoriesData);
 });
+// shows all the items for that listing
+app.get('/api/:city/:categories/:listing', function(req, res) {
+  res.json(categoriesData);
+});
+// this is going to show selected item
+app.get('/api/:city/:categories/:listings/:item', function(req, res) {
+  res.json(itemsData)
+});
+// show the item selected
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/index.html'), function(err) {
     if (err) {

@@ -24,7 +24,7 @@ class Home extends Component {
 
     const self = this;
     axios
-      .get(`/api/${match.params.city}/categories`)
+      .get(`/api/${match.params.city}`)
       .then(res => {
         if (this._isMount) {
           this.setState(
