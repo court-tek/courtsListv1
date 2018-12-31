@@ -848,7 +848,8 @@ table {
       flex-flow: row nowrap;
   -ms-flex-pack: justify;
       justify-content: space-between; }
-  #header .fa-chevron-down {
+  #header .fa-chevron-down,
+  #header .fa-chevron-up {
     cursor: pointer;
     margin-left: 8px; }
   #header .left-menu {
@@ -863,7 +864,7 @@ table {
           justify-content: center;
       -ms-flex-align: center;
           align-items: center; }
-    #header .left-menu .city {
+    #header .left-menu .city-dropdown {
       display: -ms-flexbox;
       display: flex;
       -ms-flex-pack: center;
@@ -872,10 +873,26 @@ table {
           align-items: center;
       padding: 15px 20px;
       position: relative; }
-      #header .left-menu .city .dropdown {
+      #header .left-menu .city-dropdown .scroll-area {
         position: absolute;
-        background: blue;
-        top: 50px; }
+        background: rgba(0, 0, 0, 0.3);
+        top: 35px;
+        left: 0;
+        min-width: 150px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transition: all .5s ease-in-out; }
+        #header .left-menu .city-dropdown .scroll-area.active {
+          visibility: visible;
+          opacity: 1;
+          top: 50px; }
+        #header .left-menu .city-dropdown .scroll-area ul li {
+          padding: 15px;
+          cursor: pointer; }
+          #header .left-menu .city-dropdown .scroll-area ul li:hover {
+            background: rgba(0, 0, 0, 0.2); }
   #header .right-menu {
     display: -ms-flexbox;
     display: flex; }
