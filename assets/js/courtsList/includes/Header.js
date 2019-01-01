@@ -7,8 +7,8 @@ class Header extends Component {
     this.state = {
       name: "Courtney",
       cityDropdown: false,
-      selectedCity: "Washington D.C.",
-      citiesData: [],
+      selectedCity: "",
+      citiesData: []
     };
     this.clickedCity = this.clickedCity.bind(this);
     this.selectCity = this.selectCity.bind(this);
@@ -19,9 +19,14 @@ class Header extends Component {
     axios
       .get(`apis/cities`)
       .then(function(res) {
+        const { match } = self.props;
+        let city = res.data.filter(item => {
+          return item.slug == match.params.city;
+        });
         self.setState(
           {
-            citiesData: res.data
+            citiesData: res.data,
+            selectedCity: city[0].title
           },
           function() {
             console.log(self.state);
@@ -37,26 +42,32 @@ class Header extends Component {
     const { cityDropdown } = this.state;
     this.setState({
       cityDropdown: !cityDropdown
-    })
+    });
   }
 
-  selectCity(city) {
-    const { citiesData, selectedCity } = this.state;
+  selectCity = (city) => {
     this.setState({
-      selectedCity: city
-    }, () =>{
-      let city = citiesData.filter((item) =>{
-        return item.title == selectedCity
-      })
-      const { match, history } = this.props;
-        history.push('/washingtondc')
-    })
-  }
+        selectedCity: city
+      }, () =>{
+        const { citiesData, selectedCity } = this.state;
+        let where = citiesData.filter(item => {
+          return item.title == selectedCity;
+        })
+        const { history } = this.props;
+        history.push(`/${where[0].slug}`);
+        console.log(where);
+      });
+
+      }
 
   citiesLoop() {
     const self = this;
     return this.state.citiesData.map((item, i) => {
-      return <li key={i} onClick={this.selectCity.bind(null, item.title)}>{item.title}</li>;
+      return (
+        <li key={i} onClick={this.selectCity.bind(null, item.title)}>
+          {item.title}
+        </li>
+      );
     });
   }
 
@@ -68,10 +79,18 @@ class Header extends Component {
           <div className="left-menu">
             <div className="logo">Courtslist</div>
             {/* Dropdown menu */}
-            <div style={{ cursor: 'pointer' }} className={'city-dropdown'} onClick={this.clickedCity}>
+            <div
+              style={{ cursor: "pointer" }}
+              className={"city-dropdown"}
+              onClick={this.clickedCity}
+            >
               {this.state.selectedCity}
-              <i className={`fas fa-chevron-down ${(cityDropdown) ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
-              <div className={`scroll-area ${(cityDropdown) ? 'active' : ''}`}>
+              <i
+                className={`${
+                  cityDropdown ? "fas fa-chevron-up" : "fas fa-chevron-down"
+                }`}
+              />
+              <div className={`scroll-area ${cityDropdown ? "active" : ""}`}>
                 <ul>{this.citiesLoop()}</ul>
               </div>
             </div>

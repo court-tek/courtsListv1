@@ -17,8 +17,12 @@ class Home extends Component {
 
   componentDidMount() {
     this._isMount = true;
+    const { match, history } = this.props;
     const self = this;
-    
+
+    if (match.params.city == undefined) {
+      history.push('/washingtondc')
+    }
     axios
       .get(`/api/${match.params.city}`)
       .then(res => {

@@ -9,19 +9,10 @@ import Details from './pages/Details';
 
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: 'Joe'
-    }
-  }
-  clikcedBtn = () => {
-    console.log('swag');
-  }
   render() {
     return (<Router>
       <div>
-        <Header/>
+        <Route path="/:city" component={Header} />
         <Route exact path="/" component={Home} />
         <Route exact path="/:city" component={Home} />
         <Route exact path="/:city/:category" component={Category} />
