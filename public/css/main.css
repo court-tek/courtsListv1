@@ -936,6 +936,7 @@ table {
     padding: 20px;
     margin-bottom: 70px; }
     .home .classifiedLinks .categories .title {
+      display: block;
       font-size: 1.3rem;
       color: #fff;
       margin-bottom: 1rem;
@@ -995,6 +996,13 @@ table {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
     padding: 50px 0; }
+  #listings-page .make-model-comp {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap; }
   #listings-page .form-group {
     display: -ms-flexbox;
     display: flex;

@@ -19,10 +19,13 @@ app.get('/api/:city', function(req, res) {
   res.json(categoriesData);
 });
 // shows all the items for a particular category
-app.get('/api/:city/:categories', function(req, res) {
-  res.json(categoriesData);
+app.get('/api/:city/:category', function(req, res) {
+  console.log(req.params.city);
+  let newData = itemsData.filter(item => {
+    return item.city == req.params.city && item.category == req.params.category
+  })
+  res.json(newData);
 });
-// shows all the items for that listing
 app.get('/api/:city/:categories/:listing', function(req, res) {
   res.json(categoriesData);
 });

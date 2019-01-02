@@ -11,10 +11,6 @@ class Home extends Component {
     };
   }
 
-  componentWillMount() {
-
-  }
-
   componentDidMount() {
     this._isMount = true;
     const { match, history } = this.props;
@@ -47,6 +43,7 @@ class Home extends Component {
   }
 
   loopCategories() {
+    const { match } = this.props;
     return this.state.categoriesData.map((category, i) => {
       const loopListings = () => {
         return category.listings.map((listing, index) => {
@@ -61,7 +58,7 @@ class Home extends Component {
       return (
         <div key={i} className="categories">
           {/* categories start */}
-          <div className="title">{category.title}</div>
+          <a href={`/${match.params.city}/${category.title}`} className="title">{category.title}</a>
           <div className={`group-links ${(category.title == 'community' || category.title == 'jobs' || category.title == 'services' || category.title == 'personals') ? 'single-col' : ''}`}>
             {loopListings()}
           </div>

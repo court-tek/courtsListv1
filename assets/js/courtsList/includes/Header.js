@@ -19,16 +19,18 @@ class Header extends Component {
     axios
       .get(`apis/cities`)
       .then(function(res) {
-        const { match } = self.props;
-        let city = res.data.filter(item => {
-          return item.slug == match.params.city;
-        });
+        const { match, history } = self.props;
+          let city = res.data.filter(item => {
+            return item.slug == match.params.city;
+          });
         self.setState(
           {
             citiesData: res.data,
             selectedCity: city[0].title
           },
           function() {
+            document.body.style.backgroundImage =
+            // `linear-gradient(135deg, rgba(75,52,247,0.8) 0%, rgba(166,39,230,0.8) 100%), url(${city[0].img})`
             console.log(self.state);
           }
         );
@@ -41,8 +43,9 @@ class Header extends Component {
   clickedCity() {
     const { cityDropdown } = this.state;
     this.setState({
-      cityDropdown: !cityDropdown
+      cityDropdown: !cityDropdown,
     });
+    console.log(this.state.chevron);
   }
 
   selectCity = (city) => {
@@ -72,7 +75,8 @@ class Header extends Component {
   }
 
   render() {
-    const { cityDropdown } = this.state;
+    const { cityDropdown, citiesData } = this.state;
+    console.log(citiesData);
     return (
       <div className="myContainer">
         <header id="header">
@@ -86,9 +90,7 @@ class Header extends Component {
             >
               {this.state.selectedCity}
               <i
-                className={`${
-                  cityDropdown ? "fas fa-chevron-up" : "fas fa-chevron-down"
-                }`}
+                className="fas fa-chevron-down"
               />
               <div className={`scroll-area ${cityDropdown ? "active" : ""}`}>
                 <ul>{this.citiesLoop()}</ul>
