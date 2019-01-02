@@ -13544,6 +13544,8 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -13644,11 +13646,22 @@ var Category = function (_Component) {
             ),
             _react2.default.createElement(
               "select",
-              { name: "make", className: "make" },
+              { name: "make", className: "make",
+                onChange: this.handleChange },
               _react2.default.createElement(
                 "option",
-                { value: "bmw" },
-                "Subaru"
+                { value: "subaru" },
+                "subaru"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "toyota" },
+                "toyota"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "ford" },
+                "ford"
               )
             )
           ),
@@ -13662,11 +13675,22 @@ var Category = function (_Component) {
             ),
             _react2.default.createElement(
               "select",
-              { name: "model", className: "model" },
+              { name: "model", className: "model",
+                onChange: this.handleChange },
               _react2.default.createElement(
                 "option",
-                { value: "STI" },
+                { value: "sti" },
                 "WRX"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "4runner" },
+                "4runner"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "mustangGt" },
+                "mustang gt"
               )
             )
           )
@@ -13676,14 +13700,14 @@ var Category = function (_Component) {
   }, {
     key: "handleChange",
     value: function handleChange() {
-      // const name = event.target.name
-      // const value = (event.target.type == 'checkbox') ? event.target.checked : event.target.value
-      //
-      // this.setState({
-      //   [name]: value
-      // }, () => {
-      //   console.log(this.state);
-      // })
+      var _this2 = this;
+
+      var name = event.target.name;
+      var value = event.target.type == 'checkbox' ? event.target.checked : event.target.value;
+
+      this.setState(_defineProperty({}, name, value), function () {
+        console.log(_this2.state);
+      });
     }
   }, {
     key: "render",
@@ -13715,20 +13739,42 @@ var Category = function (_Component) {
                 { className: "min-max" },
                 _react2.default.createElement(
                   "select",
-                  { name: "min-price", className: "min-price" },
+                  { name: "min-price", className: "min-price",
+                    onChange: this.handleChange },
                   _react2.default.createElement(
                     "option",
                     { value: "0" },
                     "0"
-                  )
-                ),
-                _react2.default.createElement(
-                  "select",
-                  { name: "max-price", className: "max-price" },
+                  ),
                   _react2.default.createElement(
                     "option",
                     { value: "1000" },
                     "1000"
+                  ),
+                  _react2.default.createElement(
+                    "option",
+                    { value: "5000" },
+                    "5000"
+                  )
+                ),
+                _react2.default.createElement(
+                  "select",
+                  { name: "max-price", className: "max-price",
+                    onChange: this.handleChange },
+                  _react2.default.createElement(
+                    "option",
+                    { value: "1000" },
+                    "1000"
+                  ),
+                  _react2.default.createElement(
+                    "option",
+                    { value: "5000" },
+                    "5000"
+                  ),
+                  _react2.default.createElement(
+                    "option",
+                    { value: "10000" },
+                    "10000"
                   )
                 )
               )
@@ -13790,11 +13836,17 @@ var Category = function (_Component) {
                   { className: "form-group sort-dropdown" },
                   _react2.default.createElement(
                     "select",
-                    { name: "select-view", className: "sort-dropdown" },
+                    { name: "sort", className: "sort-dropdown",
+                      onChange: this.handleChange },
                     _react2.default.createElement(
                       "option",
-                      { value: "Gallery" },
+                      { value: "newest" },
                       "Newest"
+                    ),
+                    _react2.default.createElement(
+                      "option",
+                      { value: "oldest" },
+                      "Oldest"
                     )
                   )
                 )

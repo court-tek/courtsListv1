@@ -53,14 +53,20 @@ export default class Category extends Component {
       return (<div className="make-model-comp">
         <div className="form-group make">
           <label>Make</label>
-          <select name="make" className="make">
-            <option value="bmw">Subaru</option>
+          <select name="make" className="make"
+          onChange={this.handleChange}>
+            <option value="subaru">subaru</option>
+            <option value="toyota">toyota</option>
+            <option value="ford">ford</option>
           </select>
         </div>
         <div className="form-group model">
           <label>Model</label>
-          <select name="model" className="model">
-            <option value="STI">WRX</option>
+          <select name="model" className="model"
+          onChange={this.handleChange}>
+            <option value="sti">WRX</option>
+            <option value="4runner">4runner</option>
+            <option value="mustangGt">mustang gt</option>
           </select>
         </div>
       </div>)
@@ -68,14 +74,14 @@ export default class Category extends Component {
   }
 
   handleChange() {
-    // const name = event.target.name
-    // const value = (event.target.type == 'checkbox') ? event.target.checked : event.target.value
-    //
-    // this.setState({
-    //   [name]: value
-    // }, () => {
-    //   console.log(this.state);
-    // })
+    const name = event.target.name
+    const value = (event.target.type == 'checkbox') ? event.target.checked : event.target.value
+
+    this.setState({
+      [name]: value
+    }, () => {
+      console.log(this.state);
+    })
   }
 
   render() {
@@ -89,11 +95,17 @@ export default class Category extends Component {
           <div className="form-group price">
             <label>Price</label>
             <div className="min-max">
-              <select name="min-price" className="min-price">
+              <select name="min-price" className="min-price"
+              onChange={this.handleChange}>
                 <option value="0">0</option>
-              </select>
-              <select name="max-price" className="max-price">
                 <option value="1000">1000</option>
+                <option value="5000">5000</option>
+              </select>
+              <select name="max-price" className="max-price"
+              onChange={this.handleChange}>
+                <option value="1000">1000</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
               </select>
             </div>
           </div>{this.carOptions()}
@@ -122,8 +134,10 @@ export default class Category extends Component {
                 </select>
               </div>
               <div className="form-group sort-dropdown">
-                <select name="select-view" className="sort-dropdown">
-                  <option value="Gallery">Newest</option>
+                <select name="sort" className="sort-dropdown"
+                onChange={this.handleChange}>
+                  <option value="newest">Newest</option>
+                  <option value="oldest">Oldest</option>
                 </select>
               </div>
             </section>
