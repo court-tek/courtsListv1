@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, {
+  Component
+} from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 
@@ -11,19 +13,20 @@ class Category extends Component {
   }
   componentWillMount() {
     const self = this;
-    const { match } = this.props;
+    const {
+      match
+    } = this.props;
     console.log(match.params.category);
     axios
       .get(`/api/${match.params.city}/${match.params.category}`)
       .then(res => {
-          self.setState(
-            {
-              itemsData: res.data
-            },
-            () => {
-              console.log(self.state);
-            }
-          );
+        self.setState({
+            itemsData: res.data
+          },
+          () => {
+            console.log(self.state);
+          }
+        );
       })
       .catch(err => {
         console.log(err);
@@ -31,23 +34,46 @@ class Category extends Component {
   }
 
   loopListings = () => {
-      const { itemsData } = this.state;
+      const {
+        itemsData
+      } = this.state;
       if (itemsData != undefined) {
         return itemsData.map((item, i) => {
-            return ( <div key={i}
-              style={{ cursor: 'pointer' }}
-              className="item">
-              <div className="image" style={{ backgroundSize: 'center',
-              backgroundImage: `url('${item.images[0]}')` }}>
-              <div className="price">${item.price}</div>
-              image</div>
-              <div className="details">
-              <i className="far fa-star"></i>
-              <h5>{item.title}</h5>
-              <h6>{item.city}</h6></div>
-              </div>)
+            return ( < div key = {
+                i
+              }
+              style = {
+                {
+                  cursor: 'pointer'
+                }
+              }
+              className = "item" >
+              <
+              div className = "image"
+              style = {
+                {
+                  backgroundSize: 'center',
+                  backgroundImage: `url('${item.images[0]}')`
+                }
+              } >
+              <
+              div className = "price" > $ {
+                item.price
+              } < /div>
+              image < /div> <
+              div className = "details" >
+              <
+              i className = "far fa-star" > < /i> <
+              h5 > {
+                item.title
+              } < /h5> <
+              h6 > {
+                item.city
+              } < /h6></div >
+              <
+              /div>)
             })
-          }
+        }
       }
 
       carOptions() {
@@ -56,26 +82,19 @@ class Category extends Component {
         } = this.props;
         if (match.params.category === 'cars-and-trucks') {
           return ( < div className = "make-model-comp" >
-            <
-            div className = "form-group make" >
-            <
-            label > Make < /label> <
-            select name = "make"
-            className = "make" >
-            <
-            option value = "bmw" > Subaru < /option> < /
-            select > <
-            /div> <
-            div className = "form-group model" >
-            <
-            label > Model < /label> <
-            select name = "model"
-            className = "model" >
-            <
-            option value = "STI" > WRX < /option> < /
-            select > <
-            /div> < /
-            div > )
+            <div className="form-group make">
+            <label>Make</label>
+            <select name="make" className="make">
+            <option value="bmw">Subaru</option>
+            </select>
+            </div>
+            <div className="form-group model">
+            <label>Model</label>
+            <select name="model" className="model">
+            <option value="STI">WRX</option>
+            </select>
+            </div>
+            </div>)
         }
       }
 

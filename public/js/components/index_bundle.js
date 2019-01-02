@@ -13566,33 +13566,50 @@ var Category = function (_Component) {
           return _react2.default.createElement(
             "div",
             { key: i,
-              style: { cursor: 'pointer' },
+              style: {
+                cursor: 'pointer'
+              },
               className: "item" },
             _react2.default.createElement(
               "div",
-              { className: "image", style: { backgroundSize: 'center',
-                  backgroundImage: "url('" + item.images[0] + "')" } },
+              { className: "image",
+                style: {
+                  backgroundSize: 'center',
+                  backgroundImage: "url('" + item.images[0] + "')"
+                } },
               _react2.default.createElement(
                 "div",
                 { className: "price" },
-                "$",
-                item.price
+                " $ ",
+                item.price,
+                " "
               ),
-              "image"
+              "image "
             ),
+            " ",
             _react2.default.createElement(
               "div",
               { className: "details" },
-              _react2.default.createElement("i", { className: "far fa-star" }),
+              _react2.default.createElement(
+                "i",
+                { className: "far fa-star" },
+                " "
+              ),
+              " ",
               _react2.default.createElement(
                 "h5",
                 null,
-                item.title
+                " ",
+                item.title,
+                " "
               ),
+              " ",
               _react2.default.createElement(
                 "h6",
                 null,
-                item.city
+                " ",
+                item.city,
+                " "
               )
             )
           );
@@ -13638,46 +13655,36 @@ var Category = function (_Component) {
             _react2.default.createElement(
               "label",
               null,
-              " Make "
+              "Make"
             ),
-            " ",
             _react2.default.createElement(
               "select",
-              { name: "make",
-                className: "make" },
+              { name: "make", className: "make" },
               _react2.default.createElement(
                 "option",
                 { value: "bmw" },
-                " Subaru "
-              ),
-              " "
-            ),
-            " "
+                "Subaru"
+              )
+            )
           ),
-          " ",
           _react2.default.createElement(
             "div",
             { className: "form-group model" },
             _react2.default.createElement(
               "label",
               null,
-              " Model "
+              "Model"
             ),
-            " ",
             _react2.default.createElement(
               "select",
-              { name: "model",
-                className: "model" },
+              { name: "model", className: "model" },
               _react2.default.createElement(
                 "option",
                 { value: "STI" },
-                " WRX "
-              ),
-              " "
-            ),
-            " "
-          ),
-          " "
+                "WRX"
+              )
+            )
+          )
         );
       }
     }
