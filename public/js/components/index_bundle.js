@@ -13565,51 +13565,36 @@ var Category = function (_Component) {
         return itemsData.map(function (item, i) {
           return _react2.default.createElement(
             "div",
-            { key: i,
-              style: {
+            { key: i, style: {
                 cursor: 'pointer'
-              },
-              className: "item" },
+              }, className: "item" },
             _react2.default.createElement(
               "div",
-              { className: "image",
-                style: {
+              { className: "image", style: {
                   backgroundSize: 'center',
                   backgroundImage: "url('" + item.images[0] + "')"
                 } },
               _react2.default.createElement(
                 "div",
                 { className: "price" },
-                " $ ",
-                item.price,
-                " "
+                "$ ",
+                item.price
               ),
-              "image "
+              "image"
             ),
-            " ",
             _react2.default.createElement(
               "div",
               { className: "details" },
-              _react2.default.createElement(
-                "i",
-                { className: "far fa-star" },
-                " "
-              ),
-              " ",
+              _react2.default.createElement("i", { className: "far fa-star" }),
               _react2.default.createElement(
                 "h5",
                 null,
-                " ",
-                item.title,
-                " "
+                item.title
               ),
-              " ",
               _react2.default.createElement(
                 "h6",
                 null,
-                " ",
-                item.city,
-                " "
+                item.city
               )
             )
           );
@@ -13689,6 +13674,18 @@ var Category = function (_Component) {
       }
     }
   }, {
+    key: "handleChange",
+    value: function handleChange() {
+      // const name = event.target.name
+      // const value = (event.target.type == 'checkbox') ? event.target.checked : event.target.value
+      //
+      // this.setState({
+      //   [name]: value
+      // }, () => {
+      //   console.log(this.state);
+      // })
+    }
+  }, {
     key: "render",
     value: function render() {
       var _props = this.props,
@@ -13699,100 +13696,69 @@ var Category = function (_Component) {
       return _react2.default.createElement(
         "div",
         { id: "listings-page" },
-        " ",
-        " ",
         _react2.default.createElement(
           "div",
           { className: "myContainer" },
-          " ",
-          " ",
           _react2.default.createElement(
             "section",
             { className: "filter" },
-            " ",
-            " ",
             _react2.default.createElement(
               "div",
               { className: "form-group price" },
               _react2.default.createElement(
                 "label",
                 null,
-                " Price "
+                "Price"
               ),
-              " ",
               _react2.default.createElement(
                 "div",
                 { className: "min-max" },
                 _react2.default.createElement(
                   "select",
-                  { name: "min-price",
-                    className: "min-price" },
+                  { name: "min-price", className: "min-price" },
                   _react2.default.createElement(
                     "option",
                     { value: "0" },
-                    " 0 "
-                  ),
-                  " "
+                    "0"
+                  )
                 ),
-                " ",
                 _react2.default.createElement(
                   "select",
-                  { name: "max-price",
-                    className: "max-price" },
+                  { name: "max-price", className: "max-price" },
                   _react2.default.createElement(
                     "option",
                     { value: "1000" },
-                    " 1000 "
-                  ),
-                  " "
-                ),
-                " "
-              ),
-              " "
+                    "1000"
+                  )
+                )
+              )
             ),
-            " ",
             this.carOptions(),
-            " ",
-            " ",
             _react2.default.createElement(
               "div",
               { className: "form-group button" },
               _react2.default.createElement(
                 "div",
                 { className: "primary-btn" },
-                " Update "
+                "Update"
               ),
-              " ",
               _react2.default.createElement(
                 "div",
                 { className: "reset-btn" },
-                " Reset "
-              ),
-              " "
-            ),
-            " "
-          ),
-          " ",
-          " "
+                "Reset"
+              )
+            )
+          )
         ),
-        " ",
-        " ",
-        " ",
         _react2.default.createElement(
           "section",
           { id: "list-view" },
-          " ",
-          " ",
           _react2.default.createElement(
             "div",
             { className: "myContainer" },
-            " ",
-            " ",
             _react2.default.createElement(
               "div",
               { className: "white-box" },
-              " ",
-              " ",
               _react2.default.createElement(
                 "section",
                 { className: "change-view" },
@@ -13801,69 +13767,46 @@ var Category = function (_Component) {
                   { className: "form-group view-dropdown" },
                   _react2.default.createElement(
                     "select",
-                    { name: "select-view",
-                      className: "select-view" },
+                    { name: "select-view", className: "select-view" },
                     _react2.default.createElement(
                       "option",
                       { value: "Gallery" },
-                      " Gallery View "
+                      "Gallery View"
                     ),
-                    " ",
                     _react2.default.createElement(
                       "option",
                       { value: "list" },
-                      " List View "
+                      "List View"
                     ),
-                    " ",
                     _react2.default.createElement(
                       "option",
                       { value: "thumb" },
-                      " List View "
-                    ),
-                    " "
-                  ),
-                  " "
+                      "List View"
+                    )
+                  )
                 ),
-                " ",
                 _react2.default.createElement(
                   "div",
                   { className: "form-group sort-dropdown" },
                   _react2.default.createElement(
                     "select",
-                    { name: "select-view",
-                      className: "sort-dropdown" },
+                    { name: "select-view", className: "sort-dropdown" },
                     _react2.default.createElement(
                       "option",
                       { value: "Gallery" },
-                      " Newest "
-                    ),
-                    " "
-                  ),
-                  " "
-                ),
-                " "
+                      "Newest"
+                    )
+                  )
+                )
               ),
-              " ",
-              " ",
-              " ",
               _react2.default.createElement(
                 "section",
                 { className: "all-items" },
-                " ",
-                this.loopListings(),
-                " "
-              ),
-              " ",
-              " "
-            ),
-            " ",
-            " "
-          ),
-          " ",
-          " "
-        ),
-        " ",
-        " "
+                this.loopListings()
+              )
+            )
+          )
+        )
       );
     }
   }]);
