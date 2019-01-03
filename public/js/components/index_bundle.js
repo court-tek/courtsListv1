@@ -13567,15 +13567,22 @@ var Category = function (_Component) {
         return itemsData.map(function (item, i) {
           return _react2.default.createElement(
             "div",
-            { key: i, style: {
-                cursor: 'pointer'
-              }, className: "item" },
+            {
+              key: i,
+              style: {
+                cursor: "pointer"
+              },
+              className: "item"
+            },
             _react2.default.createElement(
               "div",
-              { className: "image", style: {
-                  backgroundSize: 'center',
+              {
+                className: "image",
+                style: {
+                  backgroundSize: "center",
                   backgroundImage: "url('" + item.images[0] + "')"
-                } },
+                }
+              },
               _react2.default.createElement(
                 "div",
                 { className: "price" },
@@ -13605,8 +13612,13 @@ var Category = function (_Component) {
     };
 
     _this.state = {
-      itemsData: []
+      itemsData: [],
+      min_price: 0,
+      max_price: 10000,
+      sort: "newest",
+      select_view: "gallery"
     };
+    _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
 
@@ -13632,7 +13644,8 @@ var Category = function (_Component) {
     value: function carOptions() {
       var match = this.props.match;
 
-      if (match.params.category === 'cars-and-trucks') {
+      console.log(match.params.listing);
+      if (match.params.listing == "cars-and-trucks") {
         return _react2.default.createElement(
           "div",
           { className: "make-model-comp" },
@@ -13646,8 +13659,7 @@ var Category = function (_Component) {
             ),
             _react2.default.createElement(
               "select",
-              { name: "make", className: "make",
-                onChange: this.handleChange },
+              { name: "make", className: "make", onChange: this.handleChange },
               _react2.default.createElement(
                 "option",
                 { value: "subaru" },
@@ -13675,8 +13687,7 @@ var Category = function (_Component) {
             ),
             _react2.default.createElement(
               "select",
-              { name: "model", className: "model",
-                onChange: this.handleChange },
+              { name: "model", className: "model", onChange: this.handleChange },
               _react2.default.createElement(
                 "option",
                 { value: "sti" },
@@ -13699,11 +13710,11 @@ var Category = function (_Component) {
     }
   }, {
     key: "handleChange",
-    value: function handleChange() {
+    value: function handleChange(event) {
       var _this2 = this;
 
       var name = event.target.name;
-      var value = event.target.type == 'checkbox' ? event.target.checked : event.target.value;
+      var value = event.target.type == "checkbox" ? event.target.checked : event.target.value;
 
       this.setState(_defineProperty({}, name, value), function () {
         console.log(_this2.state);
@@ -13716,6 +13727,11 @@ var Category = function (_Component) {
           match = _props.match,
           location = _props.location,
           history = _props.history;
+      var _state = this.state,
+          min_price = _state.min_price,
+          max_price = _state.max_price,
+          select_view = _state.select_view,
+          sort = _state.sort;
 
       return _react2.default.createElement(
         "div",
@@ -13739,8 +13755,12 @@ var Category = function (_Component) {
                 { className: "min-max" },
                 _react2.default.createElement(
                   "select",
-                  { name: "min-price", className: "min-price",
-                    onChange: this.handleChange },
+                  {
+                    name: "min-price",
+                    className: "min-price",
+                    onChange: this.handleChange,
+                    value: min_price
+                  },
                   _react2.default.createElement(
                     "option",
                     { value: "0" },
@@ -13759,8 +13779,12 @@ var Category = function (_Component) {
                 ),
                 _react2.default.createElement(
                   "select",
-                  { name: "max-price", className: "max-price",
-                    onChange: this.handleChange },
+                  {
+                    name: "max-price",
+                    className: "max-price",
+                    onChange: this.handleChange,
+                    value: max_price
+                  },
                   _react2.default.createElement(
                     "option",
                     { value: "1000" },
@@ -13813,7 +13837,12 @@ var Category = function (_Component) {
                   { className: "form-group view-dropdown" },
                   _react2.default.createElement(
                     "select",
-                    { name: "select-view", className: "select-view" },
+                    {
+                      name: "select-view",
+                      className: "select-view",
+                      onChange: this.handleChange,
+                      value: select_view
+                    },
                     _react2.default.createElement(
                       "option",
                       { value: "Gallery" },
@@ -13827,7 +13856,7 @@ var Category = function (_Component) {
                     _react2.default.createElement(
                       "option",
                       { value: "thumb" },
-                      "List View"
+                      "Thumbnail View"
                     )
                   )
                 ),
@@ -13836,8 +13865,12 @@ var Category = function (_Component) {
                   { className: "form-group sort-dropdown" },
                   _react2.default.createElement(
                     "select",
-                    { name: "sort", className: "sort-dropdown",
-                      onChange: this.handleChange },
+                    {
+                      name: "sort",
+                      className: "sort-dropdown",
+                      onChange: this.handleChange,
+                      value: sort
+                    },
                     _react2.default.createElement(
                       "option",
                       { value: "newest" },
@@ -14228,7 +14261,7 @@ var Home = function (_Component) {
           return category.listings.map(function (listing, index) {
             return _react2.default.createElement(
               "a",
-              { href: category.title + "/" + listing.slug, className: "link", key: index },
+              { href: match.params.city + "/" + category.title + "/" + listing.slug, className: "link", key: index },
               listing.name
             );
           });
