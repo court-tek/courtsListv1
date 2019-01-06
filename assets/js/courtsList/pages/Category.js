@@ -6,13 +6,11 @@ export default class Category extends Component {
   constructor() {
     super();
     this.state = {
-      itemsData: [],
       min_price: 0,
-      max_price: 10000,
-      sort: "newest",
-      select_view: "gallery"
+      max_price: 10000
     };
     this.handleChange = this.handleChange.bind(this);
+    this.submitFilters = this.submitFilters.bind(this);
   }
   componentWillMount() {
     const self = this;
@@ -85,7 +83,7 @@ export default class Category extends Component {
           <div className="form-group model">
             <label>Model</label>
             <select name="model" className="model" onChange={this.handleChange}>
-              <option value="sti">WRX</option>
+              <option value="wrx">wrx</option>
               <option value="4runner">4runner</option>
               <option value="mustangGt">mustang gt</option>
             </select>
@@ -95,26 +93,26 @@ export default class Category extends Component {
     }
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const name = event.target.name;
-    const value =
-      event.target.type == "checkbox"
-        ? event.target.checked
-        : event.target.value;
+    const value = (event.target.type == "checkbox") ? event.target.checked : event.target.value;
 
-    this.setState(
-      {
-        [name]: value
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    this.setState({
+      [name]: value
+    },() => {
+      console.log(this.state);
+    })
+  }
+
+  submitFilters() {
+    const { match, history } = this.props;
+    const { min_price, max_price, sort, select_view } = this.state;
+    history.push(`/${match.params.city}/${match.params.category}?min_price=${min_price}&max_price=${max_price}&sort=${sort}&select_view=${select_view}`)
   }
 
   render() {
     const { match, location, history } = this.props;
-    const { min_price, max_price, select_view, sort } = this.state;
+    const { min_price, max_price, select_view } = this.state;
     return (
       <div id="listings-page">
         {/* container starts */}
@@ -126,7 +124,7 @@ export default class Category extends Component {
               <label>Price</label>
               <div className="min-max">
                 <select
-                  name="min-price"
+                  name="min_price"
                   className="min-price"
                   onChange={this.handleChange}
                   value={min_price}
@@ -136,7 +134,7 @@ export default class Category extends Component {
                   <option value="5000">5000</option>
                 </select>
                 <select
-                  name="max-price"
+                  name="max_price"
                   className="max-price"
                   onChange={this.handleChange}
                   value={max_price}
@@ -150,7 +148,7 @@ export default class Category extends Component {
             {this.carOptions()}
             {/* price options end */}
             <div className="form-group button">
-              <div className="primary-btn">Update</div>
+              <div className="primary-btn" onClick={this.submitFilters}>Update</div>
               <div className="reset-btn">Reset</div>
             </div>
           </section>
@@ -166,13 +164,8 @@ export default class Category extends Component {
               {/* change view starts */}
               <section className="change-view">
                 <div className="form-group view-dropdown">
-                  <select
-                    name="select-view"
-                    className="select-view"
-                    onChange={this.handleChange}
-                    value={select_view}
-                  >
-                    <option value="Gallery">Gallery View</option>
+                  <select name="select_view" className="select-view" onChange={this.handleChange} value={select_view}>
+                    <option value="gallery">Gallery View</option>
                     <option value="list">List View</option>
                     <option value="thumb">Thumbnail View</option>
                   </select>
@@ -182,7 +175,7 @@ export default class Category extends Component {
                     name="sort"
                     className="sort-dropdown"
                     onChange={this.handleChange}
-                    value={sort}
+                    value={this.state.sort}
                   >
                     <option value="newest">Newest</option>
                     <option value="oldest">Oldest</option>
