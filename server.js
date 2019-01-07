@@ -21,9 +21,17 @@ app.get('/api/:city', function(req, res) {
 // shows all the items for a particular category
 app.get('/api/:city/:category', function(req, res) {
   console.log(req.params.city);
-  let newData = itemsData.filter(item => {
-    return item.city == req.params.city && item.category == req.params.category
-  })
+  let newData;
+  if (req.query.min_price != undefined) {
+    newData = itemsData.filter(item => {
+      return item.city == req.params.city && item.category == req.params.category && item.price >= req.query.min_price && item.price <= req.query.min_price
+    })
+  } else {
+    newData = itemsData.filter(item => {
+      return item.city == req.params.city && item.category == req.params.category
+    })
+  }
+
   res.json(newData);
 });
 app.get('/api/:city/:categories/:listing', function(req, res) {
